@@ -139,6 +139,14 @@ app.delete('/account', verifyIfExistsAccountCPF, (request, response) => {
   return response.json(customers);
 });
 
+app.get('/balance', verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
+
+  const balance = getBalance(customer.statement);
+
+  return response.json(balance);
+});
+
 app.listen(3333, () => {
   console.log('🚀 Server is running at http://localhost:3333');
 });
